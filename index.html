@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+
+<head>
+  <script data-require="angular.js@1.5.0" data-semver="1.5.0" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+  <link href="style.css" rel="stylesheet" />
+  <script src="script.js"></script>
+</head>
+
+<body ng-controller="MainController">
+  <div id="topDiv">
+    <table id="personTable">
+      <tr>
+        <td class="personTableACell" ng-repeat="personSelectedA in selectedPerson">
+          <div ng-bind="personSelectedA.firstName"></div>
+          <div ng-bind="personSelectedA.lastName"></div>
+          <div ng-bind="personSelectedA.age"></div>
+          <div ng-bind="personSelectedA.location"></div>
+        </td>
+        <td class="personTableBCell" ng-repeat="personSelectedB in selectedPerson">
+          <div ng-bind="personSelectedB.firstName"></div>
+          <div ng-bind="personSelectedB.lastName"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="bottomDiv">
+    <table id="peopleTable">
+      <tr>
+        <td ng-class="drawBorder($index)" class="peopleTableCell" onclick="I = this.cellIndex" ng-repeat="people in actualPeopleArray" ng-click="selectPerson()">
+          <div ng-bind="people.firstName"></div>
+          <div ng-bind="people.age"></div>
+        </td>
+      </tr>
+    </table>
+    <div id="navigation">
+      <input class="navigation" type="button" value="<" onclick="I -= 1" ng-click="peopleMoveBackward()" />
+      <div class="navigation" ng-bind="selectedPerson[0]['id']"></div>
+      <div class="navigation">/</div>
+      <div class="navigation" ng-bind="baseList.length"></div>
+      <input class="navigation" type="button" value=">" onclick="I += 1" ng-click="peopleMoveForward()" />
+    </div>
+  </div>
+</body>
+
+</html>
